@@ -43,8 +43,13 @@ function update(changes, id) {
   return db('schemes');
 }
 
-//
-function remove(id) {}
+// remove(id) functionality tested in Insomnia
+function remove(id) {
+    return db('schemes')
+      .where({ id })
+      .del()
+      .then(count => id);
+  }
 
 //
 function addStep(step, scheme_id) {}
