@@ -10,19 +10,19 @@ module.exports = {
   addStep,
 };
 
-// FUNCTIONAL
+// find() functionality tested in Insomnia
 function find() {
   return db('schemes');
 }
 
-// FUNCTIONAL
+// findById(id) functionality tested in Insomnia
 function findById(id) {
   return db('schemes')
     .where({ id })
     .first();
 }
 
-// FUNCTIONAL
+// findSteps(id) functionality tested in Insomnia
 function findSteps(id) {
   return db('steps')
     .join('schemes', 'schemes.id', 'steps.scheme_id')
@@ -31,11 +31,17 @@ function findSteps(id) {
     .orderBy('step_number');
 }
 
-//
-function add(schema) {}
+// add(schema) functionality tested in Insomnia
+function add(schema) {
+  return db('schemes')
+    .insert(schema)
+    .then(ids => findById(ids[0]));
+}
 
 //
-function update(changes, id) {}
+function update(changes, id) {
+  return db('schemes');
+}
 
 //
 function remove(id) {}
