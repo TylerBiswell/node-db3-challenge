@@ -53,5 +53,11 @@ function remove(id) {
     .del();
 }
 
-//
-function addStep(step, scheme_id) {}
+// addStep(step, scheme_id) functionality tested in Insomnia
+function addStep(step, scheme_id) {
+    return db('steps')
+      .insert({ ...step, scheme_id })
+      .then(id => {
+        return db('steps').where({ id: id[0] });
+      });
+  }
